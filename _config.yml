@@ -1,0 +1,68 @@
+title: taskpapr
+description: A minimal, paper-inspired task board. No noise, no friction.
+baseurl: ''
+url: https://taskpapr.github.io
+
+# Theme — just-the-docs via remote_theme (works with GitHub Pages)
+remote_theme: just-the-docs/just-the-docs@v0.10.0
+
+# just-the-docs configuration
+color_scheme: taskpapr  # our custom scheme in assets/css/
+
+# Aux links in the top-right nav
+aux_links:
+  "Launch App":
+    - https://taskpapr.com
+aux_links_new_tab: true
+
+# Footer
+footer_content: "taskpapr &mdash; simple task management. Built with <a href=\"https://jekyllrb.com\">Jekyll</a> and <a href=\"https://just-the-docs.com\">Just the Docs</a>."
+
+# Search
+search_enabled: true
+search_tokenizer_separator: /[\s\-/]+/
+
+# Collections / navigation
+nav_external_links:
+  - title: GitHub
+    url: https://github.com/taskpapr
+    hide_icon: false
+
+# Heading anchor links
+heading_anchors: true
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+# Callouts (just-the-docs v0.6+)
+callouts_level: quiet
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: purple
+  warning:
+    title: Warning
+    color: red
+
+# Jekyll build settings
+plugins:
+  - jekyll-feed
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - "*.sh"
+  - .git

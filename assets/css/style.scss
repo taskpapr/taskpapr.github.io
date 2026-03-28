@@ -1,0 +1,156 @@
+---
+---
+
+// taskpapr — paper aesthetic overrides for just-the-docs
+// --------------------------------------------------------
+// Import the base just-the-docs styles first.
+// just-the-docs automatically finds this file via the theme pipeline.
+
+@import "{{ site.theme }}";
+
+// ---------------------------------------------------------------------------
+// Colour palette — warm paper tones
+// ---------------------------------------------------------------------------
+
+$paper-bg:        #f5f0e8;   // warm parchment
+$paper-bg-dark:   #ede7d9;   // slightly darker for sidebar
+$paper-border:    #d6ccb8;   // soft divider
+$paper-text:      #3a3228;   // dark warm brown (not pure black)
+$paper-muted:     #7a6f62;   // muted warm grey
+$paper-accent:    #7c6f4a;   // earthy gold — primary accent
+$paper-accent-hover: #5d5235; // darker on hover
+$paper-link:      #5b5038;   // warm brown links
+$paper-code-bg:   #ede8dc;   // code block background
+
+// ---------------------------------------------------------------------------
+// Override just-the-docs CSS custom properties
+// ---------------------------------------------------------------------------
+
+:root {
+  // Backgrounds
+  --body-background-color:       #{$paper-bg};
+  --sidebar-color:               #{$paper-bg-dark};
+  --code-background-color:       #{$paper-code-bg};
+
+  // Text
+  --body-text-color:             #{$paper-text};
+  --body-heading-color:          #{$paper-text};
+  --nav-child-link-color:        #{$paper-muted};
+  --link-color:                  #{$paper-link};
+
+  // Borders
+  --border-color:                #{$paper-border};
+  --table-border-color:          #{$paper-border};
+
+  // Accent / buttons
+  --btn-primary-color:           #{$paper-accent};
+
+  // Search
+  --search-background-color:     #{$paper-bg};
+  --search-result-preview-color: #{$paper-muted};
+}
+
+// ---------------------------------------------------------------------------
+// Typography — warm, serif-accented headings
+// ---------------------------------------------------------------------------
+
+h1, h2, h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+body, p, li, td {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+// ---------------------------------------------------------------------------
+// Sidebar — paper-toned background
+// ---------------------------------------------------------------------------
+
+.side-bar {
+  background-color: $paper-bg-dark;
+  border-right: 1px solid $paper-border;
+}
+
+.site-title {
+  color: $paper-text !important;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+// ---------------------------------------------------------------------------
+// Links
+// ---------------------------------------------------------------------------
+
+a {
+  color: $paper-link;
+  text-decoration: none;
+
+  &:hover {
+    color: $paper-accent-hover;
+    text-decoration: underline;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Code blocks — softer feel
+// ---------------------------------------------------------------------------
+
+pre.highlight, code {
+  background-color: $paper-code-bg;
+  border: 1px solid $paper-border;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+// ---------------------------------------------------------------------------
+// Tables — minimal paper look
+// ---------------------------------------------------------------------------
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    background-color: $paper-bg-dark;
+    border-bottom: 2px solid $paper-border;
+    font-weight: 700;
+    color: $paper-muted;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  td, th {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid $paper-border;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Horizontal rules — soft dividers
+// ---------------------------------------------------------------------------
+
+hr {
+  border: none;
+  border-top: 1px solid $paper-border;
+  margin: 2rem 0;
+}
+
+// ---------------------------------------------------------------------------
+// Callout / note boxes
+// ---------------------------------------------------------------------------
+
+.note {
+  background-color: $paper-bg-dark;
+  border-left: 3px solid $paper-accent;
+  padding: 0.8rem 1rem;
+  border-radius: 0 4px 4px 0;
+  color: $paper-muted;
+  font-size: 0.9rem;
+}
