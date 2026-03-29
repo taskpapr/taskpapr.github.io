@@ -3,10 +3,8 @@
 
 // taskpapr — paper aesthetic overrides for just-the-docs
 // --------------------------------------------------------
-// Import the base just-the-docs styles first.
-// just-the-docs automatically finds this file via the theme pipeline.
-
-@import "{{ site.theme }}";
+// just-the-docs serves its own stylesheet via remote_theme.
+// This file contains ONLY our custom overrides on top of it.
 
 // ---------------------------------------------------------------------------
 // Colour palette — warm paper tones

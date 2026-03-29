@@ -7,7 +7,7 @@ url: https://taskpapr.github.io
 remote_theme: just-the-docs/just-the-docs@v0.10.0
 
 # just-the-docs configuration
-color_scheme: taskpapr  # our custom scheme in assets/css/
+# color_scheme: taskpapr  # uncomment once assets/css/color_schemes/taskpapr.scss exists
 
 # Aux links in the top-right nav
 aux_links:
