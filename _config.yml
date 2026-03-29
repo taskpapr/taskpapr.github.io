@@ -66,3 +66,4 @@ exclude:
   - README.md
   - "*.sh"
   - .git
+  - vendor/
