@@ -26,17 +26,14 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
   <h2 class="hp-section__title">Why taskpapr?</h2>
   <div class="hp-why-grid">
     <div class="hp-why-item">
-      <span class="hp-why-item__icon">✦</span>
       <h3>No friction to open</h3>
       <p>Your board is always one click away. No loading screens, no onboarding prompts, no "what would you like to do today?" Just the board.</p>
     </div>
     <div class="hp-why-item">
-      <span class="hp-why-item__icon">✦</span>
       <h3>Spatial, not hierarchical</h3>
       <p>Tasks live on a canvas you can arrange freely. Position things the way your brain already organises them — not the way a database wants to store them.</p>
     </div>
     <div class="hp-why-item">
-      <span class="hp-why-item__icon">✦</span>
       <h3>Done stays visible</h3>
       <p>Completed tasks don't vanish. They stay on the board, faded, until you deliberately clear them — like sweeping a real desk. You decide when the slate is clean.</p>
     </div>
