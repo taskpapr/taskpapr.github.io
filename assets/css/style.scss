@@ -514,3 +514,12 @@ $plates-heat: #b85c2a;
 .hp-footer__license {
   color: $paper-muted;
 }
+
+// ---------------------------------------------------------------------------
+// Homepage — suppress just-the-docs chrome that doesn't belong on a landing page
+// ---------------------------------------------------------------------------
+
+// Hide the copy-to-clipboard button injected into <pre> blocks on the homepage
+.hp-callout__code .code-copy-button {
+  display: none;
+}
