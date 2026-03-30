@@ -70,10 +70,16 @@ Click the 🎨 icon on the tile header (visible on hover) to open the palette pi
 
 ### Per-tile scale
 
-Use the **−** / **+** buttons on the tile header (visible on hover) to shrink or enlarge the tile's content in 0.1× steps. Range: 0.5× – 2.0×. Default: 1.0×.
+Shrink or enlarge an individual tile's content in 0.1× steps. Range: 0.5× – 2.0×. Default: 1.0×.
+
+| Gesture | Effect |
+|---|---|
+| **Scroll wheel on tile header** | Shrink (scroll down) or grow (scroll up) |
+| **Double-click tile header** | Reset scale to 1.0× instantly |
+| **Two-finger pinch on tile (mobile)** | Pinch to scale; snapped to 0.1× steps |
 
 {: .note }
-> Scaling affects the text and tasks inside the tile, not the tile's canvas footprint.
+> Scrolling on the tile header adjusts tile scale. Scrolling on the canvas background zooms the whole canvas. The two gestures don't interfere.
 
 ### Deleting a tile
 
@@ -130,7 +136,7 @@ Drag tasks to reorder within a tile, or drag them to a different tile entirely.
 
 ## WIP state
 
-Mark a task as **Work In Progress** to give it a visual amber left stripe and a WIP badge.
+Mark a task as **Work In Progress** to give it a visual teal left stripe and a WIP badge.
 
 - **Mark WIP:** Click the left stripe of any active task, or use the context menu → **Mark WIP**
 - **Clear WIP:** Click the **WIP** badge on the task
@@ -178,15 +184,34 @@ Click the **🔍** button in the header to open search with the mouse.
 | `-` | Zoom out |
 | `Home` | Reset zoom to 100% |
 | `G` | Toggle goal smart-tiles |
+| `⌘1` – `⌘9` | Jump to canvas bookmark by position |
 | `Escape` | Close open panels / dismiss overlays |
 
 ---
 
-## Canvas bookmarks
+## Canvas bookmarks (🔖 Views)
 
-{: .label .label-yellow }
-Coming in v0.34.0
-
-Named saved views. A bookmark stores the current canvas position and zoom level. Click a bookmark to animate back to that view instantly.
+Named saved views. A bookmark stores the current canvas position and zoom level so you can jump back to it instantly with a smooth animation.
 
 Useful for maintaining separate "zones" on the canvas — e.g. jump between a Work area and a Personal area with one click.
+
+### Saving a bookmark
+
+1. Pan and zoom the canvas to the view you want to save
+2. Click **🔖 Views** in the header
+3. Click **Save current view…** and give it a name
+
+Bookmarks are stored in the database and sync across devices.
+
+### Jumping to a bookmark
+
+- Click **🔖 Views** in the header, then click any bookmark in the list
+- Or press **⌘1–⌘9** to jump to bookmarks by their position in the list
+
+The canvas animates smoothly to the saved position and zoom level.
+
+### Renaming or deleting a bookmark
+
+Click **🔖 Views** to open the panel:
+- Click the **✎** icon next to a bookmark to rename it
+- Click the **✕** icon to delete it
