@@ -50,12 +50,12 @@ Homepage CSS classes: hp-hero, hp-btn, hp-why-grid, hp-features-grid, hp-feature
 - SQLite via node:sqlite (Node 22.5+ required, no native compilation)
 - Single-user by default (no login); multi-user via GitHub OAuth or OIDC
 - Docker image: ghcr.io/taskpapr/taskpapr:latest
-- Current version shown on homepage: v0.33.0
+- Current version shown on homepage: v0.34.0
 
 ## Key features of the app
 1. **Canvas** — infinite canvas, freely draggable tiles
 2. **Done** — completed tasks stay visible, faded
-3. **WIP** — amber left stripe for in-progress tasks
+3. **WIP** — teal left stripe for in-progress tasks
 4. **Plates** — spinning plates; recurring tasks with visual urgency heat (amber → orange → red)
 5. **Rot** — tasks fade over time if untouched (visual only, no alerts)
 6. **Goals** — outcomes view above the noise; smart-tiles on canvas showing task progress
