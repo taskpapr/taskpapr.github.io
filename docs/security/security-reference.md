@@ -85,6 +85,9 @@ Returns HTTP 429 with a `Retry-After` header when a limit is breached. Self-host
 - `X-DNS-Prefetch-Control: off`
 - `Permissions-Policy` — disables unused browser features
 
+{: .note }
+> Content Security Policy (CSP) is explicitly disabled (`helmet({ contentSecurityPolicy: false })`). The default Helmet CSP blocks inline scripts, which would break all page JavaScript. All other Helmet protections are active.
+
 ### Input size validation
 
 Server-side length limits on all write endpoints. Frontend `maxlength` attributes are UX only — these are the enforced server-side limits:
