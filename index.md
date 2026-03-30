@@ -37,6 +37,14 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
       <h3>Done stays visible</h3>
       <p>Completed tasks don't vanish. They stay on the board, faded, until you deliberately clear them — like sweeping a real desk. You decide when the slate is clean.</p>
     </div>
+    <div class="hp-why-item">
+      <h3>A plain task is just a title</h3>
+      <p>Due dates, goals, recurrence, colour — all available, none required. Complexity is opt-in. A user who never touches any of it gets a clean, fast board. A user who needs it all gets it without friction.</p>
+    </div>
+    <div class="hp-why-item">
+      <h3>Nothing demands your attention</h3>
+      <p>No badges. No red counts. No "you have 14 overdue tasks" banners. Information is ambient and visual — there when you look, not shouting when you don't.</p>
+    </div>
   </div>
 </section>
 
@@ -62,7 +70,7 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
     <div class="hp-feature-card hp-feature-card--wip">
       <div class="hp-feature-card__label">WIP</div>
       <h3 class="hp-feature-card__title">In-motion state</h3>
-      <p class="hp-feature-card__body">An amber left stripe marks tasks that are actively in progress — not just "to do", not yet done. Things in motion look different from things waiting.</p>
+      <p class="hp-feature-card__body">A teal left stripe marks tasks that are actively in progress — not just "to do", not yet done. Things in motion look different from things waiting.</p>
     </div>
 
     <div class="hp-feature-card hp-feature-card--plates">
