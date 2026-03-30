@@ -78,9 +78,11 @@ Homepage CSS classes: hp-hero, hp-btn, hp-why-grid, hp-features-grid, hp-feature
 | docs/features/import-export.md | Import & Export | 3.7 | ✅ Created |
 | docs/integrations/index.md | Integrations (overview) | 4 (parent) | ✅ Created |
 | docs/integrations/n8n.md | n8n | 4.1 | ✅ Created |
-| docs/authentication.md | Authentication | 5 | ✅ Created |
-| docs/deployment.md | Deployment | 6 | ✅ Created |
-| docs/maintaining-the-site.md | Maintaining the Site | 7 | ✅ Created |
+| docs/security/index.md | Security (overview) | 5 (parent) | ✅ Created |
+| docs/security/security-reference.md | Security Reference | 5.1 | ✅ Created |
+| docs/authentication.md | Authentication | 6 | ✅ Created |
+| docs/deployment.md | Deployment | 7 | ✅ Created |
+| docs/maintaining-the-site.md | Maintaining the Site | 8 | ✅ Created |
 
 ## Docs pages still to create
 

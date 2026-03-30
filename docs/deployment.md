@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deployment
-nav_order: 6
+nav_order: 7
 ---
 
 # Deployment
@@ -400,6 +400,8 @@ Ensure port 80 and 443 are open for Traefik. Port 3033 should NOT be open to the
 - **Use `OIDC_TRUST_IDP=true`** when using your own IdP (e.g. Authentik) to skip redundant whitelist checks
 - **Run taskpapr as a non-root user** (the systemd unit file does this)
 - **Restrict file permissions** on `.env` (`chmod 600`)
+
+For hardening a public-facing deployment (Cloudflare, Traefik rate limiting, IP allowlisting, resource quotas), see the [Security Reference](security/security-reference.md).
 
 ---
 
