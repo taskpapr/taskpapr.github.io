@@ -76,9 +76,11 @@ Homepage CSS classes: hp-hero, hp-btn, hp-why-grid, hp-features-grid, hp-feature
 | docs/features/api-and-webhooks.md | API & Webhooks | 3.5 | ✅ Created |
 | docs/features/mcp.md | MCP Server | 3.6 | ✅ Created |
 | docs/features/import-export.md | Import & Export | 3.7 | ✅ Created |
-| docs/authentication.md | Authentication | 4 | ✅ Created |
-| docs/deployment.md | Deployment | 5 | ✅ Created |
-| docs/maintaining-the-site.md | Maintaining the Site | 6 | ✅ Created |
+| docs/integrations/index.md | Integrations (overview) | 4 (parent) | ✅ Created |
+| docs/integrations/n8n.md | n8n | 4.1 | ✅ Created |
+| docs/authentication.md | Authentication | 5 | ✅ Created |
+| docs/deployment.md | Deployment | 6 | ✅ Created |
+| docs/maintaining-the-site.md | Maintaining the Site | 7 | ✅ Created |
 
 ## Docs pages still to create
 
