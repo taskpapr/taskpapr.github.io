@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Maintaining the Site
-nav_order: 7
+nav_order: 8
 ---
 
 # Maintaining the Site
