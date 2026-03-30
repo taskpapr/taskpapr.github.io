@@ -96,7 +96,7 @@ sudo nano /opt/taskpapr/.env
 
 Paste (filling in your values):
 
-```dotenv
+```bash
 # Required
 SESSION_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))">
 NODE_ENV=production
