@@ -69,7 +69,7 @@ You can run both providers simultaneously — both buttons will appear on the lo
 
 ### Add to .env
 
-```dotenv
+```bash
 SESSION_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))">
 GITHUB_CLIENT_ID=your_client_id_here
 GITHUB_CLIENT_SECRET=your_client_secret_here
@@ -148,7 +148,7 @@ It should return a JSON document describing the OIDC endpoints.
 
 ### Add to .env
 
-```dotenv
+```bash
 SESSION_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))">
 OIDC_ISSUER=https://auth.example.com/application/o/taskpapr/
 OIDC_CLIENT_ID=your_oidc_client_id
@@ -191,27 +191,27 @@ This means you can deploy taskpapr with no whitelist entries, log in once, and t
 
 ## Full .env reference
 
-```dotenv
-# ── Session ───────────────────────────────────────────────────
+```bash
+# Session
 # Required for multi-user mode. Generate with:
 # node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 SESSION_SECRET=change-me-to-a-long-random-string
 
-# ── Server ────────────────────────────────────────────────────
+# Server
 PORT=3033
 NODE_ENV=production
 
-# ── Database ──────────────────────────────────────────────────
+# Database
 # Optional; defaults to ./data/papr.db
 DB_PATH=/opt/taskpapr/data/taskpapr.db
 
-# ── GitHub OAuth ──────────────────────────────────────────────
+# GitHub OAuth
 # Omit or leave blank to disable GitHub login
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GITHUB_CALLBACK_URL=https://yourdomain.com/auth/github/callback
 
-# ── OIDC / SSO ────────────────────────────────────────────────
+# OIDC / SSO
 # Omit or leave blank to disable SSO login
 OIDC_ISSUER=https://auth.example.com/application/o/taskpapr/
 OIDC_CLIENT_ID=
@@ -222,10 +222,11 @@ OIDC_CALLBACK_URL=https://yourdomain.com/auth/oidc/callback
 # false = OIDC users must also be on the whitelist
 OIDC_TRUST_IDP=true
 
-# ── Telegram (optional) ───────────────────────────────────────
+# Telegram (optional)
 # Get a bot token from @BotFather on Telegram
 TELEGRAM_BOT_TOKEN=
 TELEGRAM_NOTIFY_HOUR=8
 TELEGRAM_BOT_USERNAME=
 TELEGRAM_WEBHOOK_SECRET=
 TELEGRAM_CHAT_ID=
+```
