@@ -125,9 +125,9 @@ The **rot interval** is per-task (default: weekly).
 | Rot ratio | Appearance |
 |---|---|
 | 0 – 0.5 | No change (fresh) |
-| 0.5 – 1.0 | Faint grey wash begins |
-| 1.0 – 1.5 | Warm parchment / yellowed paper tint |
-| 1.5+ | Fully aged parchment (capped) |
+| 0.5 | Faint cool grey wash begins |
+| 1.0 | Clearly visible grey tint |
+| 1.5+ | Warm aged parchment (capped) |
 
 The colour progression — cool grey → warm parchment — deliberately mimics paper ageing rather than alarming red. The board stays calm.
 
@@ -137,7 +137,9 @@ To reset the rot clock without actually changing the task:
 
 - Context menu → **Touch**
 - Task detail panel → **✓ Touch** button (footer)
-- Edit anything in the detail panel (title, notes, etc.) — this also counts as a touch
+
+{: .note }
+> Editing a task's title or notes does **not** reset the rot clock. Only an explicit Touch action advances it. This means you can annotate a task without accidentally resetting its age signal.
 
 ### Per-task settings
 

@@ -161,16 +161,32 @@ The login page will now show a **"Sign in with SSO"** button.
 
 ---
 
-## Whitelist vs trust-your-IdP
+## Whitelist vs open registration
 
-By default, taskpapr uses an **invite whitelist**: a user's email must be in the whitelist table before they can log in. This is managed via the admin UI at `/admin`.
+### Default behaviour
 
-The `OIDC_TRUST_IDP` setting modifies this behaviour for OIDC logins only:
+For **self-hosted installs without Stripe**, the whitelist is **on by default**. A user's email must be in the whitelist table before they can log in. The whitelist is managed from the admin UI at `/admin`.
+
+For **hosted SaaS installs with `STRIPE_SECRET_KEY` set**, the whitelist is **off by default** — anyone who can authenticate (and who pays/trials) can sign up.
+
+### Overriding with REQUIRE_WHITELIST
+
+Set `REQUIRE_WHITELIST` explicitly to override the automatic behaviour:
+
+| Value | Effect |
+|---|---|
+| `true` | Whitelist always enforced, regardless of Stripe configuration |
+| `false` | Whitelist always off — open registration for all users |
+| *(unset)* | Auto: off when Stripe is configured, on when it isn't |
+
+### OIDC_TRUST_IDP
+
+The `OIDC_TRUST_IDP` setting works independently of `REQUIRE_WHITELIST` and applies to OIDC logins only:
 
 | `OIDC_TRUST_IDP` | Effect |
 |---|---|
-| `false` (default) | OIDC users must be on the whitelist, same as GitHub users |
-| `true` | Whitelist check is skipped for OIDC logins — anyone who can authenticate with your IdP is trusted |
+| `false` (default) | OIDC users must pass the whitelist check |
+| `true` | Whitelist check skipped for OIDC logins — anyone authenticated by your IdP is trusted |
 
 **Recommendation:** Set `OIDC_TRUST_IDP=true` when using Authentik. Authentik is your own IdP and you already control who has accounts there. It is redundant to maintain a second whitelist in taskpapr.
 
@@ -185,7 +201,21 @@ The **very first user** to log in (regardless of provider) is automatically:
 This means you can deploy taskpapr with no whitelist entries, log in once, and then manage the whitelist from the `/admin` page.
 
 {: .note }
-> After first login, immediately go to `/admin` and add any other users' emails to the whitelist (if not using `OIDC_TRUST_IDP=true`).
+> After first login, immediately go to `/admin` and add any other users' emails to the whitelist (if not using `OIDC_TRUST_IDP=true` or `REQUIRE_WHITELIST=false`).
+
+---
+
+## Complimentary accounts
+
+Admins can grant any user **lifetime free access** regardless of subscription or trial status. This is managed from the `/admin` page — find the user in the users list and click **✓ Comp**.
+
+Complimentary access:
+- Bypasses all subscription and trial checks
+- Is independent of Stripe — Stripe webhooks cannot affect it
+- Can be revoked by clicking **✗ Revoke** in the admin users list
+- Does not apply to admin accounts (admins are always free)
+
+Complimentary users see a green `✓ comp` badge in the admin users list.
 
 ---
 
@@ -202,8 +232,11 @@ PORT=3033
 NODE_ENV=production
 
 # Database
-# Optional; defaults to ./data/papr.db
+# SQLite (default): leave DATABASE_URL unset; DB_PATH sets the file location
 DB_PATH=/opt/taskpapr/data/taskpapr.db
+# PostgreSQL (optional): set DATABASE_URL to use PostgreSQL instead of SQLite
+# Run `node db-migrate.js` once after setting this to create the schema
+DATABASE_URL=postgresql://user:password@localhost:5432/taskpapr
 
 # GitHub OAuth
 # Omit or leave blank to disable GitHub login
@@ -222,6 +255,12 @@ OIDC_CALLBACK_URL=https://yourdomain.com/auth/oidc/callback
 # false = OIDC users must also be on the whitelist
 OIDC_TRUST_IDP=true
 
+# Whitelist enforcement
+# true  = whitelist always on
+# false = open registration (no whitelist)
+# unset = auto (off when Stripe configured, on otherwise)
+REQUIRE_WHITELIST=
+
 # Telegram (optional)
 # Get a bot token from @BotFather on Telegram
 TELEGRAM_BOT_TOKEN=
@@ -229,4 +268,13 @@ TELEGRAM_NOTIFY_HOUR=8
 TELEGRAM_BOT_USERNAME=
 TELEGRAM_WEBHOOK_SECRET=
 TELEGRAM_CHAT_ID=
+
+# Stripe (optional — hosted/SaaS deployments only)
+# Self-hosted installs without these vars are completely unaffected
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+STRIPE_SOLO_MONTHLY_PRICE_ID=
+STRIPE_SOLO_ANNUAL_PRICE_ID=
+APP_URL=https://yourdomain.com
+STRIPE_TAX_ENABLED=false
 ```

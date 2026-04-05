@@ -271,6 +271,42 @@ Add:
 
 ---
 
+## PostgreSQL (optional)
+
+By default, taskpapr uses SQLite — a single file, zero configuration, no database server needed. This is the right choice for most self-hosted deployments.
+
+**PostgreSQL is available as an alternative** for deployments that need it — e.g. a managed database, PlanetScale, or a hosted environment where SQLite file persistence isn't available.
+
+### Setting up PostgreSQL
+
+1. Create a PostgreSQL database and user
+2. Set `DATABASE_URL` in your `.env`:
+
+```bash
+DATABASE_URL=postgresql://taskpapr:yourpassword@localhost:5432/taskpapr
+```
+
+3. Run the schema bootstrap once:
+
+```bash
+node db-migrate.js
+```
+
+4. Start taskpapr normally. When `DATABASE_URL` is set, PostgreSQL is used automatically. When it's unset, SQLite is used.
+
+{: .note }
+> Existing SQLite users do not need to do anything. `DATABASE_URL` is unset by default and SQLite behaviour is unchanged.
+
+### PostgreSQL backup
+
+Use `pg_dump`:
+
+```bash
+pg_dump -U taskpapr taskpapr > taskpapr-$(date +%Y%m%d).sql
+```
+
+---
+
 ## Upgrading
 
 When a new version is released:
