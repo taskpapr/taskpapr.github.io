@@ -50,7 +50,7 @@ Homepage CSS classes: hp-hero, hp-btn, hp-why-grid, hp-features-grid, hp-feature
 - SQLite via node:sqlite (Node 22.5+ required, no native compilation)
 - Single-user by default (no login); multi-user via GitHub OAuth or OIDC
 - Docker image: ghcr.io/taskpapr/taskpapr:latest
-- Current version shown on homepage: v0.35.1
+- Current version shown on homepage: v0.43.0
 
 ## Key features of the app
 1. **Canvas** — infinite canvas, freely draggable tiles

@@ -75,8 +75,9 @@ Shrink or enlarge an individual tile's content in 0.1× steps. Range: 0.5× – 
 | Gesture | Effect |
 |---|---|
 | **Scroll wheel on tile header** | Shrink (scroll down) or grow (scroll up) |
-| **Double-click tile header** | Reset scale to 1.0× instantly |
 | **Two-finger pinch on tile (mobile)** | Pinch to scale; snapped to 0.1× steps |
+
+When a tile is at a non-default scale, a **scale badge** (e.g. `0.7×`) appears in the tile header. Click the badge to reset the tile to 1.0× instantly. The badge is always visible when relevant so it's immediately obvious why a tile appears large or small.
 
 {: .note }
 > Scrolling on the tile header adjusts tile scale. Scrolling on the canvas background zooms the whole canvas. The two gestures don't interfere.
@@ -145,6 +146,31 @@ WIP is a signal, not a filter. WIP tasks remain in place on the board.
 
 ---
 
+## Today tile (📅)
+
+Flag tasks for today and see them in a focused, floating view on the board.
+
+### Flagging tasks
+
+Right-click a task → **📅 Add to Today** to flag it. A 📅 badge appears on the task card in the main board. Completing a flagged task removes it from the Today tile automatically — done tasks don't linger.
+
+### Opening the Today tile
+
+- Click the **📅 N** button in the header (only visible when at least one task is flagged)
+- Press **D** to toggle the tile open or closed
+
+The tile floats in the top-right corner of the viewport. It lists all flagged tasks with the tile they came from, sorted by your manual order then original board position.
+
+### Working in the Today tile
+
+- **Check off a task** — marks it done; removes it from the Today tile
+- **Unflag a task** — click the unflag button to remove it from Today without completing it
+- **Reorder** — drag the ⠿ handle to set the order within the tile
+
+The Today tile is draggable — grab the header to reposition it anywhere on screen.
+
+---
+
 ## Context menu
 
 Right-click any task (or click the **⋯** button) to open the context menu:
@@ -154,6 +180,7 @@ Right-click any task (or click the **⋯** button) to open the context menu:
 | Properties | Opens the task detail panel |
 | Mark WIP | Sets WIP state |
 | Set colour… | Opens the 8-colour palette picker |
+| 📅 Add to Today | Flags the task for the Today tile |
 | Assign Goal | Links the task to a goal |
 | Touch | Resets the rot clock (acknowledges you've seen this task) |
 | Snooze 24h | Hides the task for 24 hours without changing its due date |
@@ -175,6 +202,16 @@ Click the **🔍** button in the header to open search with the mouse.
 
 ---
 
+## Sync stamp
+
+A quiet **"synced X ago"** label appears in the title bar next to the version badge. It shows when the board data was last fetched — useful when working across multiple devices to confirm you're looking at the latest state.
+
+- Updates every 30 seconds
+- Flashes green briefly when the 60-second background poll detects remote changes
+- Hover for the exact timestamp
+
+---
+
 ## Keyboard shortcuts
 
 | Shortcut | Action |
@@ -183,6 +220,7 @@ Click the **🔍** button in the header to open search with the mouse.
 | `+` | Zoom in |
 | `-` | Zoom out |
 | `Home` | Reset zoom to 100% |
+| `D` | Toggle Today tile |
 | `G` | Toggle goal smart-tiles |
 | `⌘1` – `⌘9` | Jump to canvas bookmark by position |
 | `Escape` | Close open panels / dismiss overlays |
