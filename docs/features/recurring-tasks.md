@@ -54,6 +54,11 @@ Spinning plates is the visual urgency system for recurring tasks. As the next du
 
 Think of it like actual spinning plates: the longer you leave one unattended, the more urgent it looks. Complete it and it's calm again.
 
+<figure class="doc-figure">
+  <img src="{{ '/assets/images/docs/recurring-urgency.svg' | relative_url }}" width="560" height="120" alt="Diagram: four example task rows labelled calm, amber, orange, and red to show spinning-plates urgency steps." loading="lazy" decoding="async" />
+  <figcaption>Urgency steps as recurring due dates approach (stylised diagram).</figcaption>
+</figure>
+
 ### How urgency is calculated
 
 Urgency is calculated client-side each time the board renders, using:
@@ -78,6 +83,8 @@ Using the later of the two means a brand-new recurring task starts building urge
 {: .note }
 > WIP tasks never show urgency heat. If a task is marked WIP, the amber stripe is already signalling active attention — adding heat on top would contradict it.
 
+{% include doc_vignette_plates.html %}
+
 ---
 
 ## Dormancy
@@ -101,6 +108,11 @@ When a task is dormant:
 - A **👻 ghost pill** appears on the tile header showing how many dormant tasks are sleeping
 - Click the ghost pill to peek at them without waking them
 - Dormant tasks are still searchable via ⌘K
+
+<figure class="doc-figure">
+  <img src="{{ '/assets/images/docs/dormant-ghost-pill.svg' | relative_url }}" width="280" height="72" alt="Diagram: tile header labelled Work with a ghost pill showing two dormant tasks." loading="lazy" decoding="async" />
+  <figcaption>The 👻 pill on a tile header when dormant tasks are hidden (stylised).</figcaption>
+</figure>
 
 Tasks wake automatically when their visibility window opens. The server checks dormancy on startup and hourly.
 
@@ -130,6 +142,8 @@ The **rot interval** is per-task (default: weekly).
 | 1.5+ | Warm aged parchment (capped) |
 
 The colour progression — cool grey → warm parchment — deliberately mimics paper ageing rather than alarming red. The board stays calm.
+
+{% include doc_vignette_rot.html %}
 
 ### Acknowledging a task (Touch)
 

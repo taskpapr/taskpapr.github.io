@@ -48,9 +48,9 @@ Homepage CSS classes: hp-hero, hp-btn, hp-why-grid, hp-features-grid, hp-feature
 - Self-hosted Node.js task board
 - Port 3033 by default
 - SQLite via node:sqlite (Node 22.5+ required, no native compilation)
-- Single-user by default (no login); multi-user via GitHub OAuth or OIDC
+- Single-user by default (no login); multi-user via GitHub OAuth, Google OAuth, or OIDC
 - Docker image: ghcr.io/taskpapr/taskpapr:latest
-- Current version shown on homepage: v0.43.0
+- Current version shown on homepage: v0.44.5
 
 ## Key features of the app
 1. **Canvas** — infinite canvas, freely draggable tiles
@@ -96,12 +96,12 @@ None — all pages are complete.
 
 ## Authentication detail (for writing auth-related docs)
 - **Single-user mode**: no auth env vars set → no login, opens straight to board
-- **Multi-user mode**: set GITHUB_CLIENT_ID+SECRET and/or OIDC_ISSUER+CLIENT_ID+SECRET
+- **Multi-user mode**: set GITHUB_CLIENT_ID+SECRET, GOOGLE_CLIENT_ID+SECRET, and/or OIDC_ISSUER+CLIENT_ID+SECRET
 - **Whitelist**: by default users must be on the whitelist; managed at /admin
 - **OIDC_TRUST_IDP=true**: skips whitelist check for OIDC logins (recommended with Authentik)
 - **First user bootstrap**: first login (any provider) auto-creates admin, skips whitelist
 - **GitHub email scope**: app requests user:email scope; users without an accessible email are rejected
-- Supports both providers simultaneously (both buttons appear on login page)
+- Supports any combination of providers simultaneously (matching buttons appear on the login page)
 
 ## Deployment detail (for writing deployment docs)
 - Reference architecture: EC2 (or any VPS) + systemd + Traefik + SQLite
@@ -116,6 +116,6 @@ jekyll-feed, jekyll-remote-theme, jekyll-seo-tag
 
 ## Notes / outstanding TODOs
 - color_scheme line in _config.yml is commented out; uncomment once assets/css/color_schemes/taskpapr.scss is created
-- Homepage footer shows v0.33.0 and "License TBD" — update when license is decided
+- Homepage footer shows v0.44.5 and "License TBD" — update when license is decided
 - The launchd plist (com.papr.server.plist) is referenced in getting-started as shipping with the app
 - Repo structure section above only lists top-level docs; feature sub-pages are all now present under docs/features/

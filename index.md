@@ -111,7 +111,7 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
   <h2 class="hp-section__title">Self-hosted, by design</h2>
   <div class="hp-selfhost">
     <div class="hp-selfhost__text">
-      <p>taskpapr runs on your own machine or server. Your tasks stay yours — no accounts, no cloud sync, no subscription.</p>
+      <p>When you self-host, taskpapr runs on your own machine or server. Your tasks stay yours — no vendor accounts, no forced cloud sync, and you run it on your own terms.</p>
       <ul class="hp-selfhost__list">
         <li><strong>Node.js</strong> — runs anywhere Node runs</li>
         <li><strong>SQLite</strong> — a single file, no database server needed</li>
@@ -123,10 +123,10 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
     <div class="hp-selfhost__aside">
       <div class="hp-callout">
         <p class="hp-callout__label">Quick start</p>
-        <pre class="hp-callout__code"><code>docker run -p 3000:3000 \
+        <pre class="hp-callout__code"><code>docker run -p 3033:3033 \
   -v taskpapr_data:/data \
   ghcr.io/taskpapr/taskpapr</code></pre>
-        <p class="hp-callout__note">Then open <strong>localhost:3000</strong> in your browser.</p>
+        <p class="hp-callout__note">Then open <strong>localhost:3033</strong> in your browser.</p>
       </div>
     </div>
   </div>
@@ -140,7 +140,7 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
     <span class="hp-footer__sep">&middot;</span>
     <a href="https://github.com/taskpapr" class="hp-footer__link">GitHub</a>
     <span class="hp-footer__sep">&middot;</span>
-    <span class="hp-footer__version">v0.43.0</span>
+    <span class="hp-footer__version">v0.44.5</span>
     <span class="hp-footer__sep">&middot;</span>
     <span class="hp-footer__license">License TBD</span>
   </div>

@@ -50,7 +50,7 @@ curl -s https://your-instance/api/export \
 {
   "version": "1",
   "exported_at": "2026-03-30T10:00:00.000Z",
-  "taskpapr_version": "0.33.0",
+  "taskpapr_version": "0.44.5",
   "goals": [
     { "title": "Launch MVP", "notes": null, "position": 1 }
   ],

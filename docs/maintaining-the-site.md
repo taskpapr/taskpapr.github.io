@@ -74,13 +74,50 @@ Stop it with `Ctrl+C`.
 
 ---
 
+## Documentation images and screenshots
+
+Visuals live under **`assets/images/docs/`** (SVG diagrams today; you can add **WebP** or **PNG** captures from a real install anytime).
+
+### When to refresh
+
+- The board, tiles, Today view, goals chrome, or recurring-task visuals change in a way readers would notice.
+- You ship a release that intentionally updates colours, spacing, or typography.
+
+Add a release-checklist tick (see below) so it is not forgotten.
+
+### Capturing real screenshots (recommended for pixel fidelity)
+
+1. Run taskpapr locally (`npm start` in the app repo) with **stable demo data** — e.g. a small JSON export you always re-import — so crops stay comparable between releases.
+2. Use a **fixed viewport width** (around 1200–1400 CSS px) and the same zoom level where possible.
+3. Export **WebP** at roughly 80% quality (or PNG if you prefer lossless). Keep the long edge around **1200px** or less so the repo and mobile readers stay fast.
+4. Save into `assets/images/docs/` with a descriptive name (`board-overview.webp`, `today-tile.webp`, …).
+5. In the Markdown page, use a `<figure class="doc-figure">` (or the same pattern as existing feature pages) with **`{{ '/assets/images/docs/your-file.webp' | relative_url }}`** so `baseurl` stays correct on GitHub Pages.
+6. Write **meaningful `alt` text** (what the reader should learn from the image, not just “screenshot”).
+7. Optionally remove or keep the older SVG alongside; if you replace it, update the `src` and `alt` on the doc page.
+
+### Diagrams and UI vignettes
+
+**SVG** files in the same folder are stylised illustrations — they drift less than screenshots but are not pixel-perfect. **UI vignettes** are small HTML blocks in **`_includes/`** (e.g. `doc_vignette_wip.html`) styled in **`assets/css/style.scss`** (`.doc-vignette`, `.doc-vignette-task`, …). Update SCSS if the app’s palette or chrome changes materially.
+
+### Includes in Markdown
+
+Pages can use:
+
+```liquid
+{% include doc_vignette_wip.html %}
+```
+
+Jekyll renders Liquid before Markdown conversion. If an include ever appears as raw text in the built HTML, confirm you are building with Jekyll from this repo’s `Gemfile` / GitHub Actions (not a stripped-down Markdown previewer that skips Liquid).
+
+---
+
 ## Release checklist
 
 Run through this each time a new version of taskpapr ships.
 
 ```
 [ ] Update the version number wherever it appears
-    - Search for the old version: grep -r "v0.33" .
+    - Search for the old version: grep -r "v0.44.5" .
     - Update index.md (homepage hero/footer) and anywhere else it appears
 
 [ ] New feature added?
@@ -101,6 +138,9 @@ Run through this each time a new version of taskpapr ships.
 
 [ ] Homepage feature highlights still accurate?
     - Open index.md, check the features grid and "why taskpapr" section
+
+[ ] Board / task UI visuals changed for readers?
+    - Refresh images in assets/images/docs/ and/or vignette HTML–CSS (see “Documentation images…” above)
 
 [ ] Commit and push:
     git add .
