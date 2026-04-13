@@ -156,18 +156,49 @@ Trigger: Schedule (every Monday 8am) → HTTP Request: `add_task` with title `We
 
 ### `/api/me`
 
-**GET** — Current authenticated user.
+**GET** — Current authenticated user (or the synthetic local user in single-user mode).
+
+The response always includes **`id`**, **`display_name`**, **`avatar_url`** (may be `null`), **`email`**, **`is_admin`**, and **`version`** (app version from `package.json`).
+
+Additional fields are merged from the server for every mode:
+
+| Field | Meaning |
+|---|---|
+| `single_user` | `true` when the instance runs without login providers; `false` when multi-user auth is enabled |
+| `debug_date` | Admin debug date override, or `null` |
+| `telegram_chat_id` | User’s linked Telegram chat, env fallback, or `null` |
+| `telegram_capture_tile` | Default capture tile name, or `null` |
+| `stripe_configured` | Whether Stripe env is present (`true` / `false`) |
+| `subscription_status` | Stripe subscription state (e.g. `trialing`, `active`) |
+| `subscription_tier` | Tier name or `null` |
+| `trial_ends_at` | Trial end date string or `null` |
+| `trial_days_left` | Integer days remaining on trial, or `null` when not trialing |
+| `has_billing_account` | Whether a Stripe customer id exists |
+
+**Single-user mode** (no login) — example shape:
 
 ```json
 {
   "id": 1,
   "display_name": "James Freeman",
-  "email": "james@example.com",
+  "avatar_url": null,
+  "email": null,
   "is_admin": 1,
   "single_user": true,
-  "version": "0.33.0"
+  "version": "0.44.5",
+  "debug_date": null,
+  "telegram_chat_id": null,
+  "telegram_capture_tile": null,
+  "stripe_configured": false,
+  "subscription_status": "trialing",
+  "subscription_tier": null,
+  "trial_ends_at": null,
+  "trial_days_left": null,
+  "has_billing_account": false
 }
 ```
+
+**Multi-user mode** (after GitHub, Google, or OIDC login) — same base keys; `single_user` is `false`, and billing/Telegram fields reflect the signed-in user. Values vary with your Stripe and Telegram configuration.
 
 ---
 

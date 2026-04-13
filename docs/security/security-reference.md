@@ -8,7 +8,7 @@ nav_order: 1
 # Security Reference
 {: .no_toc }
 
-What's built in, what v0.35.0 adds, and how to harden a public-facing deployment.
+What's built in, application-layer hardening shipped with the app, and how to harden a public-facing deployment.
 {: .fs-6 .fw-300 }
 
 ---
@@ -55,13 +55,13 @@ Every database query uses `node:sqlite` prepared statements with parameterised v
 
 ### Minimal dependency surface
 
-The application has a deliberately small dependency list: `express`, `express-session`, `passport` + two strategies, `dotenv`, and the MCP SDK. No ORM, no JWT library, no template engine. Fewer dependencies means fewer CVEs to track.
+The application has a deliberately small dependency list: `express`, `express-session`, `passport` plus GitHub, Google, and OIDC strategies, `dotenv`, and the MCP SDK. No ORM, no JWT library, no template engine. Fewer dependencies means fewer CVEs to track.
 
 ---
 
-## Part 2 — v0.35.0 application hardening
+## Part 2 — Application-layer hardening
 
-These features were added in v0.35.0 and are active by default.
+These defences are active in current releases. Rate limiting, security headers, and write caps first landed around **v0.35.0**; later releases extend the same posture (for example **v0.44.x**: safer DOM handling for user-controlled strings in admin/settings, validated Stripe and same-origin redirects, explicit rate limiting on OAuth `passport.authenticate` routes, and stricter parsing of `req.body` / `req.query` before string operations).
 
 ### Rate limiting
 
@@ -71,7 +71,7 @@ Three tiers of rate limiting, applied at the application layer:
 |---|---|---|---|
 | Global | 300 req/min/IP | `RATE_LIMIT_GLOBAL` | All routes |
 | Writes | 30 req/min/IP | `RATE_LIMIT_WRITES` | Task/tile/goal/bookmark/webhook creation |
-| Auth | 20 req/min/IP | `RATE_LIMIT_AUTH` | `/auth/github`, `/auth/oidc` |
+| Auth | 20 req/min/IP | `RATE_LIMIT_AUTH` | `/auth/github`, `/auth/google`, `/auth/oidc` |
 
 Returns HTTP 429 with a `Retry-After` header when a limit is breached. Self-hosters can raise or lower these values freely via env vars.
 

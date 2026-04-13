@@ -19,7 +19,7 @@ taskpapr is designed to be self-hosted on infrastructure you control. This secti
 
 | Page | What it covers |
 |---|---|
-| [Security Reference](security-reference.md) | Built-in protections, v0.35.0 hardening, Cloudflare + Traefik infrastructure pattern, ongoing hygiene |
+| [Security Reference](security-reference.md) | Built-in protections, app-layer hardening, Cloudflare + Traefik infrastructure pattern, ongoing hygiene |
 
 ---
 

@@ -25,6 +25,11 @@ The infinite canvas at the heart of taskpapr.
 
 The board is an infinite canvas. There are no pages, no fixed grid, and no forced layout. Tiles sit wherever you put them.
 
+<figure class="doc-figure">
+  <img src="{{ '/assets/images/docs/board-overview.svg' | relative_url }}" width="720" height="400" alt="Simplified diagram: dotted parchment canvas with two tiles labelled Work and Personal, example tasks, and a zoom readout." loading="lazy" decoding="async" />
+  <figcaption>Stylised diagram of the canvas and tiles. For pixel-perfect shots, capture WebP from a running install (see <a href="{{ '/docs/maintaining-the-site' | relative_url }}#documentation-images-and-screenshots">Maintaining the Site</a>).</figcaption>
+</figure>
+
 ### Navigating
 
 | Action | How |
@@ -139,6 +144,8 @@ Drag tasks to reorder within a tile, or drag them to a different tile entirely.
 
 Mark a task as **Work In Progress** to give it a visual teal left stripe and a WIP badge.
 
+{% include doc_vignette_wip.html %}
+
 - **Mark WIP:** Click the left stripe of any active task, or use the context menu → **Mark WIP**
 - **Clear WIP:** Click the **WIP** badge on the task
 
@@ -160,6 +167,11 @@ Right-click a task → **📅 Add to Today** to flag it. A 📅 badge appears on
 - Press **D** to toggle the tile open or closed
 
 The tile floats in the top-right corner of the viewport. It lists all flagged tasks with the tile they came from, sorted by your manual order then original board position.
+
+<figure class="doc-figure">
+  <img src="{{ '/assets/images/docs/today-tile.svg' | relative_url }}" width="320" height="260" alt="Diagram: floating Today panel with header and two example tasks flagged for today." loading="lazy" decoding="async" />
+  <figcaption>Diagram of the Today tile layout (stylised).</figcaption>
+</figure>
 
 ### Working in the Today tile
 

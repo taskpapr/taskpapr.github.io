@@ -35,14 +35,15 @@ This is the right choice for personal use on your own machine. There is nothing 
 
 ## Multi-user mode
 
-Set one or both of the following to enable login:
+Set any of the following (in any combination) to enable login:
 
 - `GITHUB_CLIENT_ID` + `GITHUB_CLIENT_SECRET` → "Sign in with GitHub"
+- `GOOGLE_CLIENT_ID` + `GOOGLE_CLIENT_SECRET` → "Sign in with Google"
 - `OIDC_ISSUER` + `OIDC_CLIENT_ID` + `OIDC_CLIENT_SECRET` → "Sign in with SSO"
 
 When any auth variable is present, taskpapr shows a login page. Users must authenticate before accessing the board.
 
-You can run both providers simultaneously — both buttons will appear on the login page.
+You can run several providers at once — each configured provider gets its own button on the login page.
 
 ---
 
@@ -81,6 +82,47 @@ The login page will now show a **"Sign in with GitHub"** button.
 ### GitHub email requirements
 
 GitHub OAuth only returns the user's email if at least one email address is set to **public** on their GitHub profile, or if the app requests the `user:email` scope (which taskpapr does). Users whose GitHub account has no accessible email will be rejected with a clear error message.
+
+---
+
+## Google OAuth setup
+
+### Create the OAuth client in Google Cloud Console
+
+1. Go to **https://console.cloud.google.com/apis/credentials**
+2. Select (or create) a project
+3. Click **"Create Credentials"** → **"OAuth 2.0 Client ID"**
+4. Set the application type to **"Web application"**
+5. Under **"Authorised redirect URIs"**, add:
+   - Production: `https://yourdomain.com/auth/google/callback`
+   - Local dev: `http://localhost:3033/auth/google/callback`
+6. Click **"Create"**
+7. Note the **Client ID** and **Client Secret**
+
+### Enable the required API
+
+taskpapr requests the `email` and `profile` scopes from Google. These use the Google People API. If prompted, enable **"Google People API"** for your project in the Cloud Console under **APIs & Services → Library**.
+
+### Configure the OAuth consent screen
+
+1. Go to **APIs & Services → OAuth consent screen**
+2. Choose **"External"** (for users outside your organisation) or **"Internal"** (Google Workspace only)
+3. Fill in the app name, support email, and developer contact
+4. Under **"Scopes"**, add `email`, `profile`, and `openid`
+5. If in **"Testing"** mode, add each user's Google email to the test users list (or publish the app to remove this restriction for External apps)
+
+{: .note }
+> For a self-hosted install where everyone uses one Google Workspace organisation, **"Internal"** is often simpler — no full consent-screen publication needed.
+
+### Add to .env
+
+```bash
+GOOGLE_CLIENT_ID=your_client_id_here
+GOOGLE_CLIENT_SECRET=your_client_secret_here
+GOOGLE_CALLBACK_URL=https://yourdomain.com/auth/google/callback
+```
+
+The login page will now show a **"Sign in with Google"** button.
 
 ---
 
@@ -243,6 +285,12 @@ DATABASE_URL=postgresql://user:password@localhost:5432/taskpapr
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GITHUB_CALLBACK_URL=https://yourdomain.com/auth/github/callback
+
+# Google OAuth
+# Omit or leave blank to disable Google login
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_CALLBACK_URL=https://yourdomain.com/auth/google/callback
 
 # OIDC / SSO
 # Omit or leave blank to disable SSO login

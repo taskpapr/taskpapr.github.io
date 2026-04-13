@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120" width="560" height="120" role="img" aria-labelledby="t4 d4">
+  <title id="t4">Spinning plates urgency diagram</title>
+  <desc id="d4">Diagram: four task rows showing calm, amber, orange, and red urgency heat.</desc>
+  <rect width="100%" height="100%" fill="#f5f0e8"/>
+  <text x="20" y="22" font-family="system-ui,sans-serif" font-size="11" font-weight="600" fill="#7a6f62">Urgency (simplified)</text>
+  <g transform="translate(20,36)">
+    <rect width="120" height="36" rx="4" fill="#f0ebe3" stroke="#d6ccb8"/>
+    <text x="12" y="23" font-family="system-ui,sans-serif" font-size="10" fill="#5c5348">Calm · far from due</text>
+  </g>
+  <g transform="translate(152,36)">
+    <rect width="120" height="36" rx="4" fill="rgba(230,180,80,0.5)" stroke="#d6ccb8"/>
+    <text x="10" y="23" font-family="system-ui,sans-serif" font-size="10" fill="#3a3228">Amber · coming up</text>
+  </g>
+  <g transform="translate(284,36)">
+    <rect width="120" height="36" rx="4" fill="rgba(220,130,60,0.55)" stroke="#c9a080"/>
+    <text x="14" y="23" font-family="system-ui,sans-serif" font-size="10" fill="#3a3228">Orange · due now</text>
+  </g>
+  <g transform="translate(416,36)">
+    <rect width="120" height="36" rx="4" fill="rgba(190,70,55,0.5)" stroke="#b08070"/>
+    <text x="18" y="23" font-family="system-ui,sans-serif" font-size="10" fill="#3a3228">Red · overdue</text>
+  </g>
+</svg>
