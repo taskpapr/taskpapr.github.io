@@ -140,7 +140,7 @@ description: "A minimal, paper-inspired task board. No noise, no friction. Self-
     <span class="hp-footer__sep">&middot;</span>
     <a href="https://github.com/taskpapr" class="hp-footer__link">GitHub</a>
     <span class="hp-footer__sep">&middot;</span>
-    <span class="hp-footer__version">v0.44.5</span>
+    <span class="hp-footer__version">v0.45.5</span>
     <span class="hp-footer__sep">&middot;</span>
     <span class="hp-footer__license">License TBD</span>
   </div>
