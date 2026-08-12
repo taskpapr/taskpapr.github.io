@@ -23,7 +23,7 @@ logo: /assets/images/logo.svg
 # Aux links in the top-right nav
 aux_links:
   "Launch App":
-    - https://taskpapr.com
+    - https://app.taskpapr.com
 aux_links_new_tab: true
 
 # Footer
