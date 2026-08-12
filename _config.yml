@@ -1,7 +1,7 @@
 title: taskpapr
 description: A minimal, paper-inspired task board. No noise, no friction.
 baseurl: ''
-url: https://taskpapr.github.io
+url: https://docs.taskpapr.com
 
 # Theme — just-the-docs via remote_theme (works with GitHub Pages)
 remote_theme: just-the-docs/just-the-docs@v0.10.0
