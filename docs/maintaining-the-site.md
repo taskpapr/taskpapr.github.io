@@ -147,7 +147,7 @@ Run through this each time a new version of taskpapr ships.
     git commit -m "docs: update for vX.Y.Z"
     git push
 
-[ ] Wait ~2 minutes, then check https://taskpapr.github.io
+[ ] Wait ~2 minutes, then check https://docs.taskpapr.com
 
 [ ] If something looks wrong, check the Actions tab in the GitHub repo for build errors
 ```
@@ -262,26 +262,32 @@ If you get Ruby version errors, check `brew install ruby` succeeded and the brew
 
 ---
 
-## Future: custom domain
+## Custom domain: docs.taskpapr.com
 
-When you buy a domain (e.g. `taskpapr.app`):
+This site is served at **docs.taskpapr.com**, separate from the app (`app.taskpapr.com`, `staging.taskpapr.com`) and the marketing apex. DNS for `taskpapr.com` is in Cloudflare, same as the app subdomains (see `taskpapr-infra/docs/runbooks/`).
 
-1. **Add a CNAME file** to the repo root containing just the bare domain name:
+Setup, for reference (already done — see below if it ever needs redoing, e.g. after a domain transfer):
+
+1. **Repo:** a `CNAME` file at the repo root containing just:
    ```
-   taskpapr.app
+   docs.taskpapr.com
    ```
+   `_config.yml`'s `url:` must match (`https://docs.taskpapr.com`) so canonical URLs, the sitemap, and SEO tags are correct.
 
-2. **In GitHub:** repo Settings → Pages → Custom domain → enter `taskpapr.app` → Save
-
-3. **In DNS** (wherever the domain is registered): add a CNAME record:
+2. **Cloudflare:** add a DNS record on the `taskpapr.com` zone:
    ```
-   Name:  @  (or www, depending on provider)
-   Value: taskpapr.github.io
-   TTL:   3600
+   Type:   CNAME
+   Name:   docs
+   Target: taskpapr.github.io
+   Proxy:  DNS only (grey cloud) until GitHub issues the cert — see step 4
+   TTL:    Auto
    ```
+   This is a subdomain, so it's a plain CNAME — no ALIAS/ANAME or apex trickery needed (that's only required for `@`/root domains, which point at GitHub's A/AAAA records instead).
 
-4. **Wait for DNS to propagate** (usually a few minutes, sometimes up to an hour)
+3. **GitHub:** repo Settings → Pages → Custom domain → confirm it shows `docs.taskpapr.com` (pushing the `CNAME` file usually populates this automatically) → Save.
 
-5. **HTTPS is automatic** — GitHub handles the Let's Encrypt certificate once DNS resolves
+4. **Wait for DNS to propagate**, then check the **Enforce HTTPS** checkbox in the same Settings → Pages screen once it's available (GitHub greys it out until the domain resolves and it has issued a Let's Encrypt cert — can take a few minutes to an hour).
 
-After this, `https://taskpapr.app` will serve the site and `https://taskpapr.github.io` will redirect to it.
+5. **Cloudflare proxy (optional):** once HTTPS is enforced and working, the record can be switched to proxied (orange cloud) if you want Cloudflare's CDN/caching in front of it. If you do, set Cloudflare SSL/TLS mode to **Full** (not Flexible) or you'll get a redirect loop.
+
+`https://taskpapr.github.io` keeps working alongside the custom domain — GitHub doesn't disable the default `github.io` URL when a custom domain is set.

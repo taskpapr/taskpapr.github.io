@@ -2,7 +2,7 @@
 
 This is the **documentation and marketing website** for [taskpapr](https://taskpapr.com) — a minimal, paper-inspired task board.
 
-The site is built with [Jekyll](https://jekyllrb.com) and the [just-the-docs](https://just-the-docs.com) theme. It is hosted on [GitHub Pages](https://pages.github.com) at **https://taskpapr.github.io**.
+The site is built with [Jekyll](https://jekyllrb.com) and the [just-the-docs](https://just-the-docs.com) theme. It is hosted on [GitHub Pages](https://pages.github.com), served at **https://docs.taskpapr.com** (custom domain; the underlying `https://taskpapr.github.io` URL also keeps working).
 
 > **This is a separate repo from the app.** The app source code lives at [github.com/taskpapr/taskpapr](https://github.com/taskpapr/taskpapr). This repo (`taskpapr.github.io`) is only the website and docs.
 
@@ -117,7 +117,7 @@ has_children: true
 Deployment is fully automatic via GitHub Pages:
 
 - Every push to `main` triggers a GitHub Actions build.
-- The built site is deployed to https://taskpapr.github.io within a few minutes.
+- The built site is deployed to https://docs.taskpapr.com (and https://taskpapr.github.io) within a few minutes.
 - Check the **Actions** tab in the repo for build status.
 
 ### First-time setup (one-time)
