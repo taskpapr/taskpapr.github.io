@@ -26,8 +26,8 @@ The infinite canvas at the heart of taskpapr.
 The board is an infinite canvas. There are no pages, no fixed grid, and no forced layout. Tiles sit wherever you put them.
 
 <figure class="doc-figure">
-  <img src="{{ '/assets/images/docs/board-overview.svg' | relative_url }}" width="720" height="400" alt="Simplified diagram: dotted parchment canvas with two tiles labelled Work and Personal, example tasks, and a zoom readout." loading="lazy" decoding="async" />
-  <figcaption>Stylised diagram of the canvas and tiles. For pixel-perfect shots, capture WebP from a running install (see <a href="{{ '/docs/maintaining-the-site' | relative_url }}#documentation-images-and-screenshots">Maintaining the Site</a>).</figcaption>
+  <img src="{{ '/assets/images/docs/board-overview.png' | relative_url }}" width="1280" height="450" alt="Screenshot: parchment canvas with Work and Personal tiles, each holding a few example tasks; one task in each tile is flagged for Today." loading="lazy" decoding="async" />
+  <figcaption>The canvas with two tiles, captured from a running instance.</figcaption>
 </figure>
 
 ### Navigating
@@ -169,8 +169,8 @@ Right-click a task → **📅 Add to Today** to flag it. A 📅 badge appears on
 The tile floats in the top-right corner of the viewport. It lists all flagged tasks with the tile they came from, sorted by your manual order then original board position.
 
 <figure class="doc-figure">
-  <img src="{{ '/assets/images/docs/today-tile.svg' | relative_url }}" width="320" height="260" alt="Diagram: floating Today panel with header and two example tasks flagged for today." loading="lazy" decoding="async" />
-  <figcaption>Diagram of the Today tile layout (stylised).</figcaption>
+  <img src="{{ '/assets/images/docs/today-tile.png' | relative_url }}" width="556" height="196" alt="Screenshot: floating Today panel listing two flagged tasks, Book dentist from Personal and Deep work block from Work." loading="lazy" decoding="async" />
+  <figcaption>The Today tile, showing each flagged task's source tile.</figcaption>
 </figure>
 
 ### Working in the Today tile

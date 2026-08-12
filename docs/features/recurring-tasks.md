@@ -55,8 +55,8 @@ Spinning plates is the visual urgency system for recurring tasks. As the next du
 Think of it like actual spinning plates: the longer you leave one unattended, the more urgent it looks. Complete it and it's calm again.
 
 <figure class="doc-figure">
-  <img src="{{ '/assets/images/docs/recurring-urgency.svg' | relative_url }}" width="560" height="120" alt="Diagram: four example task rows labelled calm, amber, orange, and red to show spinning-plates urgency steps." loading="lazy" decoding="async" />
-  <figcaption>Urgency steps as recurring due dates approach (stylised diagram).</figcaption>
+  <img src="{{ '/assets/images/docs/recurring-urgency.png' | relative_url }}" width="596" height="420" alt="Screenshot: four daily recurring tasks in a tile — Water plants calm, Standup notes lightly amber, Backup database orange, Pay invoice deep red with a red left border." loading="lazy" decoding="async" />
+  <figcaption>Urgency heat climbing as each recurring task's due time approaches and passes.</figcaption>
 </figure>
 
 ### How urgency is calculated
@@ -110,8 +110,8 @@ When a task is dormant:
 - Dormant tasks are still searchable via ⌘K
 
 <figure class="doc-figure">
-  <img src="{{ '/assets/images/docs/dormant-ghost-pill.svg' | relative_url }}" width="280" height="72" alt="Diagram: tile header labelled Work with a ghost pill showing two dormant tasks." loading="lazy" decoding="async" />
-  <figcaption>The 👻 pill on a tile header when dormant tasks are hidden (stylised).</figcaption>
+  <img src="{{ '/assets/images/docs/dormant-ghost-pill.png' | relative_url }}" width="516" height="150" alt="Screenshot: Errands tile header with a 👻 2 ghost pill showing two hidden dormant tasks, and one active task visible below." loading="lazy" decoding="async" />
+  <figcaption>The 👻 pill on a tile header when dormant tasks are hidden.</figcaption>
 </figure>
 
 Tasks wake automatically when their visibility window opens. The server checks dormancy on startup and hourly.

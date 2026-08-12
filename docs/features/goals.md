@@ -75,8 +75,8 @@ One smart-tile appears per goal, auto-positioned below your regular tiles. Smart
 - Show all tasks linked to that goal, sorted: WIP → active → done
 
 <figure class="doc-figure">
-  <img src="{{ '/assets/images/docs/goals-smart-tile.svg' | relative_url }}" width="300" height="240" alt="Diagram: goal smart-tile with blue header Launch MVP and example tasks including one WIP and one done." loading="lazy" decoding="async" />
-  <figcaption>Stylised goal smart-tile: blue chrome, tasks sorted WIP → active → done.</figcaption>
+  <img src="{{ '/assets/images/docs/goals-smart-tile.png' | relative_url }}" width="520" height="284" alt="Screenshot: Launch MVP goal smart-tile with blue chrome, showing Wireframes (WIP), Beta invite (active), and Landing copy (done), each tagged with its source tile." loading="lazy" decoding="async" />
+  <figcaption>A goal smart-tile: blue chrome, tasks sorted WIP → active → done.</figcaption>
 </figure>
 
 Clicking a task row in a smart-tile opens the task detail panel for that task, just like clicking it in its home tile.
