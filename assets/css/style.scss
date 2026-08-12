@@ -681,3 +681,19 @@ $plates-heat: #b85c2a;
   background: linear-gradient(180deg, #e5dcc8 0%, #d4c4a8 100%);
   color: $paper-text;
 }
+
+// ---------------------------------------------------------------------------
+// Sidebar logo mark — see _includes/title.html (local override of
+// just-the-docs' title.html, which is icon-OR-text; we want both).
+// ---------------------------------------------------------------------------
+
+.site-logo-mark {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

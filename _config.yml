@@ -3,10 +3,21 @@ description: A minimal, paper-inspired task board. No noise, no friction.
 baseurl: ''
 url: https://docs.taskpapr.com
 
+# Social preview image (jekyll-seo-tag) — used for og:image / twitter:image.
+# jekyll-seo-tag reads `page.image`, not `site.image`, so a bare top-level
+# `image:` key here is silently ignored — it has to come in via front-matter
+# defaults so every page's `page.image` actually resolves.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/social-card.png
+
 # Theme — just-the-docs via remote_theme (works with GitHub Pages)
 remote_theme: just-the-docs/just-the-docs@v0.10.0
 
 # just-the-docs configuration
+logo: /assets/images/logo.svg
 # color_scheme: taskpapr  # uncomment once assets/css/color_schemes/taskpapr.scss exists
 
 # Aux links in the top-right nav
