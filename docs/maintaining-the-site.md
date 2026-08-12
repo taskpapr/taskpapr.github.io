@@ -284,9 +284,17 @@ Setup, for reference (already done — see below if it ever needs redoing, e.g. 
    ```
    This is a subdomain, so it's a plain CNAME — no ALIAS/ANAME or apex trickery needed (that's only required for `@`/root domains, which point at GitHub's A/AAAA records instead).
 
-3. **GitHub:** repo Settings → Pages → Custom domain → confirm it shows `docs.taskpapr.com` (pushing the `CNAME` file usually populates this automatically) → Save.
+3. **GitHub:** repo Settings → Pages → Custom domain → enter `docs.taskpapr.com` → Save.
 
-4. **Wait for DNS to propagate**, then check the **Enforce HTTPS** checkbox in the same Settings → Pages screen once it's available (GitHub greys it out until the domain resolves and it has issued a Let's Encrypt cert — can take a few minutes to an hour).
+   {: .warning }
+   > **This step does not happen automatically just by pushing the `CNAME` file** — that only applies to the legacy "Deploy from a branch" Pages builder. This site's `build_type` is `workflow` (`.github/workflows/pages.yml`, using `actions/deploy-pages`), and for workflow-based deploys GitHub does not scan the published output for a `CNAME` file to infer the custom domain. Skipping this step is a silent failure, not an error: DNS resolves, TLS terminates, `Server: GitHub.com` comes back — and GitHub Pages 404s anyway, because the domain was never associated with this repo. Confirm it's set with:
+   > ```bash
+   > gh api repos/taskpapr/taskpapr.github.io/pages --jq '.cname'
+   > # should print docs.taskpapr.com, not null
+   > ```
+   > If it prints `null`, set it directly: `gh api -X PUT repos/taskpapr/taskpapr.github.io/pages -f cname='docs.taskpapr.com'`.
+
+4. **Wait for DNS to propagate**, then check the **Enforce HTTPS** checkbox in the same Settings → Pages screen once it's available (GitHub greys it out until the domain resolves and it has issued a Let's Encrypt cert — can take a few minutes to an hour). Or via API once `https_certificate.state` is `approved`: `gh api -X PUT repos/taskpapr/taskpapr.github.io/pages -F https_enforced=true`.
 
 5. **Cloudflare proxy (optional):** once HTTPS is enforced and working, the record can be switched to proxied (orange cloud) if you want Cloudflare's CDN/caching in front of it. If you do, set Cloudflare SSL/TLS mode to **Full** (not Flexible) or you'll get a redirect loop.
 
