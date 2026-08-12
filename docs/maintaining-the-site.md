@@ -76,7 +76,7 @@ Stop it with `Ctrl+C`.
 
 ## Documentation images and screenshots
 
-Visuals live under **`assets/images/docs/`** (SVG diagrams today; you can add **WebP** or **PNG** captures from a real install anytime).
+Visuals live under **`assets/images/docs/`** — real **PNG** captures from a running instance (`board-overview.png`, `today-tile.png`, `recurring-urgency.png`, `dormant-ghost-pill.png`, `goals-smart-tile.png`).
 
 ### When to refresh
 
@@ -85,19 +85,32 @@ Visuals live under **`assets/images/docs/`** (SVG diagrams today; you can add **
 
 Add a release-checklist tick (see below) so it is not forgotten.
 
-### Capturing real screenshots (recommended for pixel fidelity)
+### Capturing real screenshots
 
-1. Run taskpapr locally (`npm start` in the app repo) with **stable demo data** — e.g. a small JSON export you always re-import — so crops stay comparable between releases.
-2. Use a **fixed viewport width** (around 1200–1400 CSS px) and the same zoom level where possible.
-3. Export **WebP** at roughly 80% quality (or PNG if you prefer lossless). Keep the long edge around **1200px** or less so the repo and mobile readers stay fast.
-4. Save into `assets/images/docs/` with a descriptive name (`board-overview.webp`, `today-tile.webp`, …).
-5. In the Markdown page, use a `<figure class="doc-figure">` (or the same pattern as existing feature pages) with **`{{ '/assets/images/docs/your-file.webp' | relative_url }}`** so `baseurl` stays correct on GitHub Pages.
-6. Write **meaningful `alt` text** (what the reader should learn from the image, not just “screenshot”).
-7. Optionally remove or keep the older SVG alongside; if you replace it, update the `src` and `alt` on the doc page.
+1. Run taskpapr locally against a **throwaway DB** (`PORT=3099 DB_PATH=/tmp/taskpapr-screenshots.db node server.js` in the app repo) — never point a capture session at a real instance.
+2. Load **stable demo data** so crops stay comparable between releases. Import this via `POST /api/import?mode=replace` (see [Import & Export]({{ '/docs/features/import-export' | relative_url }})):
+   - A "Work" tile (Review proposal, Email client, Deep work block) and a "Personal" tile (Book dentist) — flag one task in each `today_flag: true` for the Today-tile shot.
+   - A "Project" tile with three tasks assigned to a "Launch MVP" goal: one `wip`, one `done`, one `active` — for the goals smart-tile shot.
+   - An "Errands" tile with one active task and two `status: "dormant"` tasks (no `next_due`, so they won't auto-wake) — for the ghost-pill shot.
+   - A "Recurring examples" tile with four `recurrence: "daily"` tasks, for the spinning-plates urgency gradient.
+
+   {: .warning }
+   > **`created_at` does not round-trip through import** — the endpoint accepts the field in the payload but never writes it, so imported tasks always land at "just now" regardless of what the export said. This matters here because urgency/rot are computed from `created_at`/`last_acknowledged_at` relative to real time. To backdate the recurring examples (and age anything else), patch the throwaway SQLite file directly after importing, e.g.:
+   > ```bash
+   > sqlite3 /tmp/taskpapr-screenshots.db \
+   >   "UPDATE tasks SET created_at = datetime('now', '-30 hours') WHERE title = 'Pay invoice';"
+   > ```
+   > Reload the page after patching — the client computes urgency/rot from `created_at` on render. Don't use the `/api/admin/debug/date` override for this: it's correct for functional testing, but it stamps a visible 🔧 date pill in the header that you don't want in a documentation screenshot. This is a real gap in `/api/import`, worth fixing in the app repo so `taskpapr-export-*.json` snapshots round-trip losslessly — not just a screenshot workaround.
+3. Use a **fixed viewport width** (around 1200–1400 CSS px) and the same zoom level (100%) each time.
+4. Crop tightly to the UI element the doc page is illustrating — tile, panel, or header — rather than shipping full-page screenshots with the app chrome around them.
+5. Save as **PNG** into `assets/images/docs/` with a descriptive name (`board-overview.png`, `today-tile.png`, …). Keep the long edge around 1200px or less so the repo and mobile readers stay fast; WebP is fine too if you have `cwebp`/ImageMagick available for the ~80%-quality re-encode.
+6. In the Markdown page, use a `<figure class="doc-figure">` (or the same pattern as existing feature pages) with **`{{ '/assets/images/docs/your-file.png' | relative_url }}`** so `baseurl` stays correct on GitHub Pages, and set `width`/`height` to the actual captured pixel dimensions.
+7. Write **meaningful `alt` text** (what the reader should learn from the image, not just "screenshot").
+8. Tear down the throwaway server and delete the temp DB when done.
 
 ### Diagrams and UI vignettes
 
-**SVG** files in the same folder are stylised illustrations — they drift less than screenshots but are not pixel-perfect. **UI vignettes** are small HTML blocks in **`_includes/`** (e.g. `doc_vignette_wip.html`) styled in **`assets/css/style.scss`** (`.doc-vignette`, `.doc-vignette-task`, …). Update SCSS if the app’s palette or chrome changes materially.
+Some pages use a small hand-drawn **SVG** instead of a screenshot where a stylised illustration communicates better than pixel-perfect UI (or where the real UI is awkward to capture in isolation). **UI vignettes** are small HTML blocks in **`_includes/`** (e.g. `doc_vignette_wip.html`) styled in **`assets/css/style.scss`** (`.doc-vignette`, `.doc-vignette-task`, …). Update SCSS if the app's palette or chrome changes materially.
 
 ### Includes in Markdown
 
