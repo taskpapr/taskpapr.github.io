@@ -1,0 +1,11 @@
+{% comment %}
+  Local override of just-the-docs' _includes/title.html.
+  Upstream is icon-OR-text (site.logo replaces site.title entirely); we want
+  both, matching the mark+wordmark treatment used everywhere else (app
+  header, pricing nav, taskpapr.com holding page).
+{% endcomment %}
+{% if site.logo %}
+  <span class="site-logo-mark" role="img" aria-label="{{ site.title }}" style="background-image:url('{{ site.logo | relative_url }}');"></span>{{ site.title }}
+{% else %}
+  {{ site.title }}
+{% endif %}
