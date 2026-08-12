@@ -1,15 +1,24 @@
 source "https://rubygems.org"
 
-# Use the GitHub Pages gem for full compatibility with GitHub Pages builds.
-# This pins Jekyll and all plugins to the versions used by GitHub Pages.
-gem "github-pages", group: :jekyll_plugins
+# Deployed via a custom GitHub Actions workflow (.github/workflows/pages.yml),
+# not GitHub's legacy hosted Pages builder — so we don't need the `github-pages`
+# gem's exact version-matching guarantee, and shouldn't pay for it. That gem
+# pinned a 2017-era Jekyll/kramdown/liquid stack whose gems assumed stdlib
+# libraries (rexml, base64, bigdecimal, csv) were always on the load path and
+# never `tainted?`/`taint` got removed from String — both no longer true on
+# current Ruby. Plain, current Jekyll declares its own dependencies properly.
+gem "jekyll", "~> 4.3"
 
-# Additional plugins
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "jekyll-remote-theme"
   gem "jekyll-seo-tag"
+  gem "jekyll-include-cache" # optional dep of just-the-docs; theme require fails without it
 end
+
+# `jekyll serve` (local dev only) needs this explicitly on Ruby 3+ — removed
+# from the stdlib default gems.
+gem "webrick", "~> 1.8"
 
 # Windows and JRuby compatibility (safe to include on macOS/Linux)
 platforms :mingw, :x64_mingw, :mswin, :jruby do
