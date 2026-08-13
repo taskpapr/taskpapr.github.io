@@ -123,7 +123,7 @@ Run through this each time a new version of taskpapr ships.
 
 ```
 [ ] Update the version number wherever it appears
-    - Search for the old version: grep -r "v0.45.7" .
+    - Search for the old version: grep -r "v0.45.8" .
     - Update index.md (homepage hero/footer) and anywhere else it appears
 
 [ ] New feature added?
