@@ -88,19 +88,12 @@ Add a release-checklist tick (see below) so it is not forgotten.
 ### Capturing real screenshots
 
 1. Run taskpapr locally against a **throwaway DB** (`PORT=3099 DB_PATH=/tmp/taskpapr-screenshots.db node server.js` in the app repo) — never point a capture session at a real instance.
-2. Load **stable demo data** so crops stay comparable between releases. Import this via `POST /api/import?mode=replace` (see [Import & Export]({{ '/docs/features/import-export' | relative_url }})):
-   - A "Work" tile (Review proposal, Email client, Deep work block) and a "Personal" tile (Book dentist) — flag one task in each `today_flag: true` for the Today-tile shot.
-   - A "Project" tile with three tasks assigned to a "Launch MVP" goal: one `wip`, one `done`, one `active` — for the goals smart-tile shot.
-   - An "Errands" tile with one active task and two `status: "dormant"` tasks (no `next_due`, so they won't auto-wake) — for the ghost-pill shot.
-   - A "Recurring examples" tile with four `recurrence: "daily"` tasks, for the spinning-plates urgency gradient.
-
-   {: .warning }
-   > **`created_at` does not round-trip through import** — the endpoint accepts the field in the payload but never writes it, so imported tasks always land at "just now" regardless of what the export said. This matters here because urgency/rot are computed from `created_at`/`last_acknowledged_at` relative to real time. To backdate the recurring examples (and age anything else), patch the throwaway SQLite file directly after importing, e.g.:
-   > ```bash
-   > sqlite3 /tmp/taskpapr-screenshots.db \
-   >   "UPDATE tasks SET created_at = datetime('now', '-30 hours') WHERE title = 'Pay invoice';"
-   > ```
-   > Reload the page after patching — the client computes urgency/rot from `created_at` on render. Don't use the `/api/admin/debug/date` override for this: it's correct for functional testing, but it stamps a visible 🔧 date pill in the header that you don't want in a documentation screenshot. This is a real gap in `/api/import`, worth fixing in the app repo so `taskpapr-export-*.json` snapshots round-trip losslessly — not just a screenshot workaround.
+2. Load **stable demo data** so crops stay comparable between releases:
+   ```bash
+   node demo-data/generate.js | curl -X POST 'http://localhost:3099/api/import?mode=replace' \
+     -H "Content-Type: application/json" --data-binary @-
+   ```
+   (from the app repo). This is the exact board every screenshot on this site was captured from — Work/Personal/Project/Errands tiles plus a "Recurring examples" tile whose four tasks are tuned to the calm/amber/orange/red steps of the spinning-plates urgency gradient. See `demo-data/README.md` in the app repo for what's in it. Timestamps are computed relative to "now" on every run, so the urgency gradient always looks right — no manual date-patching needed (that used to be necessary here; `/api/import` now round-trips `created_at` correctly).
 3. Use a **fixed viewport width** (around 1200–1400 CSS px) and the same zoom level (100%) each time.
 4. Crop tightly to the UI element the doc page is illustrating — tile, panel, or header — rather than shipping full-page screenshots with the app chrome around them.
 5. Save as **PNG** into `assets/images/docs/` with a descriptive name (`board-overview.png`, `today-tile.png`, …). Keep the long edge around 1200px or less so the repo and mobile readers stay fast; WebP is fine too if you have `cwebp`/ImageMagick available for the ~80%-quality re-encode.
