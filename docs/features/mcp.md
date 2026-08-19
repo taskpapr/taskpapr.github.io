@@ -44,17 +44,44 @@ Once connected, you can ask things like:
 
 ## Available tools
 
+**Reading the board**
+
 | Tool | What it does |
 |---|---|
 | `get_board_summary` | Full board overview — all tiles, active/WIP tasks, goals |
 | `list_tiles` | All tiles with task counts |
 | `list_tasks` | Tasks, filterable by tile name and/or status |
-| `add_task` | Add a task to a named tile |
+| `search_tasks` | Find tasks by title (and optionally notes) substring, filterable by tile/goal/status — the safe way to locate a task before updating or deleting it |
+
+**Adding and changing tasks**
+
+| Tool | What it does |
+|---|---|
+| `add_task` | Add a task to a named tile. Blocks exact-title duplicates in the same tile by default (pass `allow_duplicate: true` to add one anyway) |
+| `update_task` | Rename a task, move it to a different tile, assign or clear its goal, change its status, or replace its notes — one partial-update tool rather than several single-purpose ones |
+| `append_task_note` | Append text to a task's notes without overwriting what's already there. Appended text is marked with a provenance line (`— via MCP, YYYY-MM-DD`) so it's clearly distinguishable from notes you typed yourself |
 | `complete_task` | Mark a task done (by id or title match) |
 | `mark_wip` | Mark a task as WIP (by id or title match) |
-| `delete_task` | Delete a task (by id or title match) |
+| `snooze_task` | Hide a task from the active board until later. With no arguments it's the same fixed 24h snooze as the app's Snooze button; pass `hours`/`days` or an explicit `until` date for a custom duration |
+| `delete_task` | **Permanently** delete a task. An unambiguous `id` deletes immediately; a `title` match requires `confirm: true` on a second call, and is rejected outright if the title matches more than one task |
+
+**Today list**
+
+| Tool | What it does |
+|---|---|
+| `list_today_tasks` | List tasks flagged for Today, in the same order the Today tile shows them |
+| `add_task_to_today` | Add an existing task to Today (appended to the end) |
+| `remove_task_from_today` | Remove a task from Today |
+| `reorder_today_tasks` | Set the full order of everything currently in Today |
+
+**Goals**
+
+| Tool | What it does |
+|---|---|
 | `list_goals` | All goals with task counts |
 | `add_goal` | Create a new goal |
+
+Every tool that acts on a specific task accepts either an `id` (unambiguous, preferred when known) or a `title_match`/`title` substring. A title match that resolves to more than one task is never guessed at — the call returns the candidate matches instead of picking one, so you can retry with a specific id.
 
 ---
 
@@ -147,6 +174,18 @@ Once connected, the AI can answer questions and take actions in plain language:
 **Update tasks:**
 - "Mark the proposal task as WIP"
 - "Mark 'Send invoice' as done"
+- "Move the dentist task to Personal and link it to the Health goal"
+- "Add a note to the proposal task: waiting on legal review"
+- "Snooze the tax return task for 3 days"
+
+**Today list:**
+- "What's in my Today list?"
+- "Add the proposal task to Today"
+- "Reorder Today so the invoice task is first"
+
+**Find and clean up:**
+- "Search for anything mentioning 'invoice'"
+- "Delete the 'old draft' task" *(asks you to confirm before it deletes anything by title)*
 
 **Manage goals:**
 - "Show me my goals and how many tasks each has"

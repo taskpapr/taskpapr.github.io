@@ -246,7 +246,7 @@ All tasks for the current user.
 Create a task. `title` and `column_id` required.
 
 #### `PATCH /api/tasks/:id`
-Update a task. All fields optional: `title`, `status`, `goal_id`, `position`, `column_id`, `color`, `next_due`, `recurrence`, `visibility_days`.
+Update a task. All fields optional: `title`, `status`, `goal_id`, `position`, `column_id`, `color`, `notes`, `next_due`, `snooze_until`, `recurrence`, `visibility_days`, `no_rot`, `rot_interval`, `today_flag`, `today_order`.
 
 #### `DELETE /api/tasks/:id`
 Delete a single task.
