@@ -24,7 +24,7 @@ taskpapr is a minimal, paper-inspired task board that runs locally or on a serve
 | [Goals](goals.md) | Outcome tracking, goal smart-tiles, assigning tasks to goals |
 | [Telegram](telegram.md) | Daily digest, self-service connect flow, quick-capture from chat |
 | [API & Webhooks](api-and-webhooks.md) | REST API reference, webhook actions, n8n automation examples |
-| [MCP Server](mcp.md) | AI assistant integration — Claude Desktop, Cline, 9 available tools |
+| [MCP Server](mcp.md) | AI assistant integration — Claude Desktop, Cline, 17 available tools |
 | [Import & Export](import-export.md) | Backup, restore, merge vs replace, curl examples |
 
 ---
@@ -41,7 +41,7 @@ taskpapr is a minimal, paper-inspired task board that runs locally or on a serve
 
 **The API** is a standard REST API with Bearer token auth. The webhook endpoint accepts four actions (`add_task`, `complete`, `mark_wip`, `delete_task`) and works with n8n, Zapier, Make, or any HTTP client.
 
-**The MCP server** exposes your board as tools for Claude Desktop, Cline, or any MCP-compatible AI assistant. Ask it what's on your board, add tasks, mark things done — in plain language.
+**The MCP server** exposes your board as tools for Claude Desktop, Cline, or any MCP-compatible AI assistant. Ask it what's on your board, search for a task, update or snooze it, manage your Today list, add notes — in plain language. Deleting is guarded: an unambiguous id deletes immediately, but a title match asks for confirmation first.
 
 **Export/import** produces a portable JSON file. Import in merge or replace mode. Use it for backups, migrating between instances, or loading demo data.
 
