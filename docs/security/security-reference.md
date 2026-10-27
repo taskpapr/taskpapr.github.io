@@ -117,6 +117,8 @@ Quotas apply to all insert paths: REST API, webhook, and Telegram quick-capture.
 
 `npm audit --audit-level=high` runs in CI on every push. High or critical CVEs fail the build. Low and moderate are reported but non-blocking.
 
+A separate workflow also runs `npm audit` against the lockfile daily, so newly published advisories surface even when nobody is pushing. It needs no tokens; it fails on high or critical findings and can post results to Slack if `SLACK_BOT_TOKEN` and `SLACK_NOTIFY_CHANNEL` secrets are set. Self-hosters running a fork get this for free once Actions are enabled.
+
 ---
 
 ## Part 3 — Recommended infrastructure pattern
@@ -274,6 +276,7 @@ Adding these to the application would increase complexity, increase attack surfa
 ## Part 5 — Ongoing hygiene
 
 - **`npm audit` in CI** — runs on every push; high/critical CVEs fail the build. Review the output.
+- **Daily dependency audit** — a scheduled workflow re-audits the lockfile every day. A red scheduled run means a new high or critical advisory.
 - **Dependabot** — enable in your fork: Settings → Code security → Dependabot alerts + Dependabot security updates. Sends PRs for dependency vulnerabilities automatically.
 - **Session secret rotation** — if `SESSION_SECRET` is ever compromised, change it and restart. All active sessions will be invalidated; users will need to log in again.
 - **Review the user list** — `/admin` shows all registered users. Periodically check for unexpected accounts.
